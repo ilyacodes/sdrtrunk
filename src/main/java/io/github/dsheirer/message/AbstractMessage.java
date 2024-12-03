@@ -42,6 +42,8 @@ public abstract class AbstractMessage
     public static final int OCTET_10_BIT_80 = 80;
     public static final int OCTET_11_BIT_88 = 88;
     public static final int OCTET_12_BIT_96 = 96;
+    public static final int OCTET_13_BIT_104 = 104;
+    public static final int OCTET_14_BIT_112 = 112;
 
     private CorrectedBinaryMessage mMessage;
     private int mOffset = 0;

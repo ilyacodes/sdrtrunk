@@ -78,6 +78,7 @@ public enum DecodeEventType
     SMS("SMS"),
     STATION_ID("Station ID"),
     STATUS("Status"),
+    TEXT_MESSAGE("Text Message"),
     UDP_PACKET("UDP/IP Packet"),
     UNKNOWN_PACKET("Unknown Packet"),
     XCMP("Motorola XCMP"),

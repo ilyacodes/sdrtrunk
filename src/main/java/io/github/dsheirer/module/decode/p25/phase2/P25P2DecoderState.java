@@ -51,6 +51,7 @@ import io.github.dsheirer.module.decode.p25.P25TrafficChannelManager;
 import io.github.dsheirer.module.decode.p25.identifier.channel.APCO25Channel;
 import io.github.dsheirer.module.decode.p25.phase1.message.IFrequencyBand;
 import io.github.dsheirer.module.decode.p25.phase1.message.P25P1Message;
+import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.MotorolaGroupTextComplete;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.MotorolaTalkerAliasComplete;
 import io.github.dsheirer.module.decode.p25.phase2.message.EncryptionSynchronizationSequence;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.IP25ChannelGrantDetailProvider;
@@ -260,6 +261,12 @@ public class P25P2DecoderState extends TimeslotDecoderState implements Identifie
                 else
                 {
                     continueState(State.CALL);
+                }
+            }
+            else if(message instanceof MacMessage mac)
+            {
+                if(message instanceof MotorolaGroupTextComplete gtc) {
+                    broadcast(mac, mac.getMacStructure(), DecodeEventType.TEXT_MESSAGE, "GROUP TEXT MESSAGE: " + gtc.getTextMessage());
                 }
             }
             else if(message instanceof MotorolaTalkerAliasComplete tac)
@@ -532,6 +539,9 @@ public class P25P2DecoderState extends TimeslotDecoderState implements Identifie
             case MOTOROLA_8B_TDMA_DATA_CHANNEL:
                 break;
             case MOTOROLA_91_GROUP_SERVICES_HEADER:
+                //Unknown
+                break;
+            case MOTOROLA_92_GROUP_TEXT_DATA_BLOCK:
                 //Unknown
                 break;
             case MOTOROLA_95_TALKER_ALIAS_DATA_BLOCK:

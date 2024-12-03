@@ -143,6 +143,7 @@ import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorol
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaGroupRegroupVoiceChannelUserAbbreviated;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaGroupRegroupVoiceChannelUserExtended;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaGroupServicesHeader;
+import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaGroupTextDataBlock;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaQueuedResponse;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaTDMADataChannel;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaTalkerAliasDataBlock;
@@ -601,6 +602,8 @@ public class MacMessageFactory
                 return new MotorolaActiveGroupRadiosOpcode191_xBF(message, offset);
             case MOTOROLA_91_GROUP_SERVICES_HEADER:
                 return new MotorolaGroupServicesHeader(message, offset);
+            case MOTOROLA_92_GROUP_TEXT_DATA_BLOCK:
+                return new MotorolaGroupTextDataBlock(message, offset);
             case MOTOROLA_95_TALKER_ALIAS_DATA_BLOCK:
                 return new MotorolaTalkerAliasDataBlock(message, offset);
             case MOTOROLA_A0_GROUP_REGROUP_VOICE_CHANNEL_USER_EXTENDED:
