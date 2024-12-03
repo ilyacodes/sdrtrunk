@@ -88,8 +88,8 @@ public class MotorolaGroupServicesHeader extends MacStructureVendor
         int format = getInt(FORMAT);
 
         switch (format) {
-            case 0: return "0-GROUP TEXT";
-            case 1: return "1-TALKER ALIAS";
+            case 0: return "0-GROUP_TEXT";
+            case 1: return "1-TALKER_ALIAS";
             default: return String.valueOf(format) + "-UNKNOWN";
         }
     }
