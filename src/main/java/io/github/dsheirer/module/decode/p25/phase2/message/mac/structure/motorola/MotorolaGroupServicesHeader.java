@@ -1,6 +1,6 @@
 /*
  * *****************************************************************************
- * Copyright (C) 2014-2024 Dennis Sheirer
+ * Copyright (C) 2014-2024 Dennis Sheirer, 2024 Ilya Smirnov
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,13 +30,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Motorola Talker Alias Header - Opcode 145
+ * Motorola Group Services Header - Opcode 145
  */
-public class MotorolaTalkerAliasHeader extends MacStructureVendor
+public class MotorolaGroupServicesHeader extends MacStructureVendor
 {
     private static final IntField TALKGROUP = IntField.length16(OCTET_4_BIT_24);
     private static final IntField BLOCK_COUNT = IntField.length8(OCTET_6_BIT_40);
-    private static final IntField FORMAT = IntField.length8(OCTET_7_BIT_48); //Value 1 observed - unicode?
+    private static final IntField FORMAT = IntField.length8(OCTET_7_BIT_48);
     private static final IntField UNKNOWN = IntField.length8(OCTET_8_BIT_56); //Always 0x00
     private static final IntField SEQUENCE = IntField.length4(OCTET_9_BIT_64);
     private static final IntField SOURCE_SUID_WACN = IntField.length20(OCTET_10_BIT_72);
@@ -54,7 +54,7 @@ public class MotorolaTalkerAliasHeader extends MacStructureVendor
      * @param message containing the message bits
      * @param offset into the message for this structure
      */
-    public MotorolaTalkerAliasHeader(CorrectedBinaryMessage message, int offset)
+    public MotorolaGroupServicesHeader(CorrectedBinaryMessage message, int offset)
     {
         super(message, offset);
     }
@@ -65,7 +65,7 @@ public class MotorolaTalkerAliasHeader extends MacStructureVendor
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MOTOROLA TALKER ALIAS HEADER TG:").append(getTalkgroup());
+        sb.append("MOTOROLA GROUP SERVICES HEADER TG:").append(getTalkgroup());
         sb.append(" RADIO:").append(getRadio());
         sb.append(" SEQUENCE:").append(getSequence());
         sb.append(" BLOCKS TO FOLLOW:").append(getBlockCount());
@@ -91,13 +91,10 @@ public class MotorolaTalkerAliasHeader extends MacStructureVendor
     {
         int format = getInt(FORMAT);
 
-        if(format == 1)
-        {
-            return "1-UNICODE"; //possibly
-        }
-        else
-        {
-            return String.valueOf(format);
+        switch (format) {
+            case 0: return "0-GROUP TEXT";
+            case 1: return "1-TALKER ALIAS";
+            default: return String.valueOf(format);
         }
     }
 

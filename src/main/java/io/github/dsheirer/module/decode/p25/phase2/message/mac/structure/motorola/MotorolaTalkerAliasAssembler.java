@@ -36,7 +36,7 @@ public class MotorolaTalkerAliasAssembler
 {
     private static final int HEADER_FRAGMENT_LENGTH = 64;
     private static final int DATA_BLOCK_FRAGMENT_LENGTH = 100;
-    private MotorolaTalkerAliasHeader mHeader;
+    private MotorolaGroupServicesHeader mHeader;
     private Map<Integer, MotorolaTalkerAliasDataBlock> mDataBlocks = new HashMap<>();
     private int mSequence = -1;
     private long mMostRecentTimestamp;
@@ -57,7 +57,7 @@ public class MotorolaTalkerAliasAssembler
      */
     public boolean add(MacStructure mac, long timestamp)
     {
-        if(mac instanceof MotorolaTalkerAliasHeader header)
+        if(mac instanceof MotorolaGroupServicesHeader header)
         {
             mMostRecentTimestamp = timestamp;
 

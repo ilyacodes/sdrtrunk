@@ -32,9 +32,9 @@ import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorol
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaGroupRegroupAdd;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaGroupRegroupVoiceChannelUpdate;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaGroupRegroupVoiceChannelUser;
+import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaGroupServicesHeader;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaTalkComplete;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaTalkerAliasDataBlock;
-import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaTalkerAliasHeader;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaUnitGPS;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaUnknownOpcode;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.standard.LCAdjacentSiteStatusBroadcast;
@@ -187,8 +187,8 @@ public class LinkControlWordFactory
                 return new LCMotorolaGroupRegroupVoiceChannelUpdate(message);
             case MOTOROLA_UNIT_GPS:
                 return new LCMotorolaUnitGPS(message);
-            case MOTOROLA_TALKER_ALIAS_HEADER:
-                return new LCMotorolaTalkerAliasHeader(message);
+            case MOTOROLA_GROUP_SERVICES_HEADER:
+                return new LCMotorolaGroupServicesHeader(message);
             case MOTOROLA_TALKER_ALIAS_DATA_BLOCK:
                 return new LCMotorolaTalkerAliasDataBlock(message);
             case MOTOROLA_EMERGENCY_ALARM_ACTIVATION:

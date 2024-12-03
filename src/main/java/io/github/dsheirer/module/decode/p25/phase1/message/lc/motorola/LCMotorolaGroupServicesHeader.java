@@ -1,6 +1,6 @@
 /*
  * *****************************************************************************
- * Copyright (C) 2014-2024 Dennis Sheirer
+ * Copyright (C) 2014-2024 Dennis Sheirer, 2024 Ilya Smirnov
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ import java.util.List;
  *
  * The reprogramming payload sequence starts by sending the full SUID for the radio (BEE00.2AE.E67852).
  */
-public class LCMotorolaTalkerAliasHeader extends LinkControlWord
+public class LCMotorolaGroupServicesHeader extends LinkControlWord
 {
     private static final IntField TALKGROUP = IntField.length16(OCTET_2_BIT_16);
     private static final IntField BLOCK_COUNT = IntField.length8(OCTET_4_BIT_32);
@@ -79,7 +79,7 @@ public class LCMotorolaTalkerAliasHeader extends LinkControlWord
      *
      * @param message
      */
-    public LCMotorolaTalkerAliasHeader(CorrectedBinaryMessage message)
+    public LCMotorolaGroupServicesHeader(CorrectedBinaryMessage message)
     {
         super(message);
     }
@@ -97,7 +97,7 @@ public class LCMotorolaTalkerAliasHeader extends LinkControlWord
         {
             sb.append(" ENCRYPTED");
         }
-        sb.append("MOTOROLA TALKER ALIAS HEADER");
+        sb.append("MOTOROLA GROUP SERVICES HEADER");
         sb.append(" TG:").append(getTalkgroup());
         sb.append(" SEQUENCE:").append(getSequence());
         sb.append(" BLOCKS TO FOLLOW:").append(getBlockCount());
@@ -127,13 +127,10 @@ public class LCMotorolaTalkerAliasHeader extends LinkControlWord
     {
         int format = getInt(FORMAT);
 
-        if(format == 1)
-        {
-            return "1-UNICODE"; //best guess
-        }
-        else
-        {
-            return String.valueOf(format);
+        switch (format) {
+            case 0: return "0-GROUP TEXT";
+            case 1: return "1-TALKER ALIAS";
+            default: return String.valueOf(format) + "-UNKNOWN";
         }
     }
 

@@ -36,7 +36,7 @@ import java.util.Map;
 public class LCMotorolaTalkerAliasAssembler
 {
     private static final int DATA_BLOCK_FRAGMENT_LENGTH = 44;
-    private LCMotorolaTalkerAliasHeader mHeader;
+    private LCMotorolaGroupServicesHeader mHeader;
     private Map<Integer, LCMotorolaTalkerAliasDataBlock> mDataBlocks = new HashMap<>();
     private int mSequence = -1;
     private long mMostRecentTimestamp;
@@ -55,7 +55,7 @@ public class LCMotorolaTalkerAliasAssembler
      */
     public boolean add(LinkControlWord lcw, long timestamp)
     {
-        if(lcw instanceof LCMotorolaTalkerAliasHeader header)
+        if(lcw instanceof LCMotorolaGroupServicesHeader header)
         {
             mMostRecentTimestamp = timestamp;
 

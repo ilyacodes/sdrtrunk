@@ -31,9 +31,9 @@ import io.github.dsheirer.module.decode.p25.phase2.message.SuperFrameFragment;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.MacMessage;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.MacStructureMultiFragment;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.MultiFragmentContinuationMessage;
+import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaGroupServicesHeader;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaTalkerAliasAssembler;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaTalkerAliasDataBlock;
-import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaTalkerAliasHeader;
 import io.github.dsheirer.module.decode.p25.phase2.timeslot.AbstractSignalingTimeslot;
 import io.github.dsheirer.module.decode.p25.phase2.timeslot.AbstractVoiceTimeslot;
 import io.github.dsheirer.module.decode.p25.phase2.timeslot.DatchTimeslot;
@@ -239,7 +239,7 @@ public class P25P2MessageProcessor implements Listener<IMessage>
                              * We reassemble Motorola talker alias messages here so that we can send the assembled
                              * message to message listener, after the fragment has been sent to the listener.
                              */
-                            if(macMessage.getMacStructure() instanceof MotorolaTalkerAliasHeader ||
+                            if(macMessage.getMacStructure() instanceof MotorolaGroupServicesHeader ||
                                macMessage.getMacStructure() instanceof MotorolaTalkerAliasDataBlock)
                             {
                                 if(macMessage.getTimeslot() == P25P2Message.TIMESLOT_1 &&

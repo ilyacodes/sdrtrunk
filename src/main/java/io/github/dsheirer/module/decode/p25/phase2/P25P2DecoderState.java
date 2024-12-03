@@ -531,7 +531,7 @@ public class P25P2DecoderState extends TimeslotDecoderState implements Identifie
                 break;
             case MOTOROLA_8B_TDMA_DATA_CHANNEL:
                 break;
-            case MOTOROLA_91_TALKER_ALIAS_HEADER:
+            case MOTOROLA_91_GROUP_SERVICES_HEADER:
                 //Unknown
                 break;
             case MOTOROLA_95_TALKER_ALIAS_DATA_BLOCK:

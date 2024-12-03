@@ -142,10 +142,10 @@ import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorol
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaGroupRegroupVoiceChannelUpdate;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaGroupRegroupVoiceChannelUserAbbreviated;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaGroupRegroupVoiceChannelUserExtended;
+import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaGroupServicesHeader;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaQueuedResponse;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaTDMADataChannel;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaTalkerAliasDataBlock;
-import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaTalkerAliasHeader;
 import io.github.dsheirer.module.decode.p25.phase2.message.mac.structure.motorola.MotorolaUnknownOpcode135;
 import io.github.dsheirer.module.decode.p25.reference.Vendor;
 import java.util.ArrayList;
@@ -599,8 +599,8 @@ public class MacMessageFactory
                 return new MotorolaActiveGroupRadiosOpcode143_x8F(message, offset);
             case MOTOROLA_BF_ACTIVE_GROUP_RADIOS_191:
                 return new MotorolaActiveGroupRadiosOpcode191_xBF(message, offset);
-            case MOTOROLA_91_TALKER_ALIAS_HEADER:
-                return new MotorolaTalkerAliasHeader(message, offset);
+            case MOTOROLA_91_GROUP_SERVICES_HEADER:
+                return new MotorolaGroupServicesHeader(message, offset);
             case MOTOROLA_95_TALKER_ALIAS_DATA_BLOCK:
                 return new MotorolaTalkerAliasDataBlock(message, offset);
             case MOTOROLA_A0_GROUP_REGROUP_VOICE_CHANNEL_USER_EXTENDED:

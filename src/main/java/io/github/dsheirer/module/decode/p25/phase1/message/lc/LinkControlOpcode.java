@@ -100,7 +100,7 @@ public enum LinkControlOpcode
     MOTOROLA_UNIT_GPS("MOTOROLA UNIT GPS", 6),
     MOTOROLA_EMERGENCY_ALARM_ACTIVATION("MOTOROLA EMERGENCY ALARM ACTIVATION", 10),
     MOTOROLA_TALK_COMPLETE("MOTOROLA TALK_COMPLETE", 15),
-    MOTOROLA_TALKER_ALIAS_HEADER("MOTOROLA TALKER ALIAS HEADER", 21),
+    MOTOROLA_GROUP_SERVICES_HEADER("MOTOROLA GROUP SERVICES HEADER", 21),
     MOTOROLA_TALKER_ALIAS_DATA_BLOCK("MOTOROLA TALKER ALIAS DATA BLOCK", 23),
     MOTOROLA_UNKNOWN("MOTOROLA UNKNOWN", -1),
 
@@ -252,7 +252,7 @@ public enum LinkControlOpcode
                     case 15:
                         return MOTOROLA_TALK_COMPLETE;
                     case 21:
-                        return MOTOROLA_TALKER_ALIAS_HEADER;
+                        return MOTOROLA_GROUP_SERVICES_HEADER;
                     case 23:
                         return MOTOROLA_TALKER_ALIAS_DATA_BLOCK;
                     default:
