@@ -39,9 +39,6 @@ public class MotorolaGroupServicesHeader extends MacStructureVendor
     private static final IntField FORMAT = IntField.length8(OCTET_7_BIT_48);
     private static final IntField UNKNOWN = IntField.length8(OCTET_8_BIT_56); //Always 0x00
     private static final IntField SEQUENCE = IntField.length4(OCTET_9_BIT_64);
-    private static final IntField SOURCE_SUID_WACN = IntField.length20(OCTET_10_BIT_72);
-    private static final IntField SOURCE_SUID_SYSTEM = IntField.length12(OCTET_12_BIT_88 + 4);
-    private static final IntField SOURCE_SUID_UNIT = IntField.length24(OCTET_14_BIT_104);
     private static final int FRAGMENT_START = OCTET_10_BIT_72;
     private static final int FRAGMENT_END = OCTET_18_BIT_136;
     private List<Identifier> mIdentifiers;
@@ -66,7 +63,6 @@ public class MotorolaGroupServicesHeader extends MacStructureVendor
     {
         StringBuilder sb = new StringBuilder();
         sb.append("MOTOROLA GROUP SERVICES HEADER TG:").append(getTalkgroup());
-        sb.append(" RADIO:").append(getRadio());
         sb.append(" SEQUENCE:").append(getSequence());
         sb.append(" BLOCKS TO FOLLOW:").append(getBlockCount());
         sb.append(" FORMAT:").append(getFormat());
@@ -94,7 +90,7 @@ public class MotorolaGroupServicesHeader extends MacStructureVendor
         switch (format) {
             case 0: return "0-GROUP TEXT";
             case 1: return "1-TALKER ALIAS";
-            default: return String.valueOf(format);
+            default: return String.valueOf(format) + "-UNKNOWN";
         }
     }
 
@@ -127,19 +123,6 @@ public class MotorolaGroupServicesHeader extends MacStructureVendor
         return mTalkgroup;
     }
 
-    public APCO25FullyQualifiedRadioIdentifier getRadio()
-    {
-        if(mRadio == null)
-        {
-            int wacn = getMessage().getInt(SOURCE_SUID_WACN, getOffset());
-            int system = getMessage().getInt(SOURCE_SUID_SYSTEM, getOffset());
-            int unit = getMessage().getInt(SOURCE_SUID_UNIT, getOffset());
-            mRadio = APCO25FullyQualifiedRadioIdentifier.createFrom(unit, wacn, system, unit);
-        }
-
-        return mRadio;
-    }
-
     @Override
     public List<Identifier> getIdentifiers()
     {
@@ -147,7 +130,6 @@ public class MotorolaGroupServicesHeader extends MacStructureVendor
         {
             mIdentifiers = new ArrayList<>();
             mIdentifiers.add(getTalkgroup());
-            mIdentifiers.add(getRadio());
         }
 
         return mIdentifiers;
