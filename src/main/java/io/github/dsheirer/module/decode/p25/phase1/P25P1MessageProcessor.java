@@ -29,6 +29,7 @@ import io.github.dsheirer.module.decode.p25.phase1.message.lc.IExtendedSourceMes
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.LinkControlWord;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.l3harris.HarrisTalkerAliasAssembler;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.l3harris.LCHarrisTalkerAliasBase;
+import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaGroupTextAssembler;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaTalkerAliasAssembler;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.standard.LCSourceIDExtension;
 import io.github.dsheirer.module.decode.p25.phase1.message.ldu.LDU1Message;
@@ -68,6 +69,11 @@ public class P25P1MessageProcessor implements Listener<IMessage>
     private HDUMessage mHeldHDUMessage;
     private LDU1Message mHeldLDU1Message;
     private LDU2Message mHeldLDU2Message;
+
+    /**
+     * Motorola group text assembler for link control header and data blocks.
+     */
+    private LCMotorolaGroupTextAssembler mMotorolaGroupTextAssembler = new LCMotorolaGroupTextAssembler();
 
     /**
      * Motorola talker alias assembler for link control header and data blocks.
@@ -168,6 +174,12 @@ public class P25P1MessageProcessor implements Listener<IMessage>
                         mHeldTDULCMessage = tdulc;
                         return;
                     }
+                }
+
+                //Motorola carries the group text in the TDULC
+                else if(mMotorolaGroupTextAssembler.add(lcw, message.getTimestamp()))
+                {
+                    dispatch(mMotorolaGroupTextAssembler.assemble());
                 }
 
                 //Motorola carries the talker alias in the TDULC

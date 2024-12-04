@@ -33,6 +33,7 @@ import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorol
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaGroupRegroupVoiceChannelUpdate;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaGroupRegroupVoiceChannelUser;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaGroupServicesHeader;
+import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaGroupTextDataBlock;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaTalkComplete;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaTalkerAliasDataBlock;
 import io.github.dsheirer.module.decode.p25.phase1.message.lc.motorola.LCMotorolaUnitGPS;
@@ -189,6 +190,8 @@ public class LinkControlWordFactory
                 return new LCMotorolaUnitGPS(message);
             case MOTOROLA_GROUP_SERVICES_HEADER:
                 return new LCMotorolaGroupServicesHeader(message);
+            case MOTOROLA_GROUP_TEXT_DATA_BLOCK:
+                return new LCMotorolaGroupTextDataBlock(message);
             case MOTOROLA_TALKER_ALIAS_DATA_BLOCK:
                 return new LCMotorolaTalkerAliasDataBlock(message);
             case MOTOROLA_EMERGENCY_ALARM_ACTIVATION:

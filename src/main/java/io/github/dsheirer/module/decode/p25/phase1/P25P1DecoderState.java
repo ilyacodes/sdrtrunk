@@ -1985,6 +1985,7 @@ public class P25P1DecoderState extends DecoderState implements IChannelEventList
                 //Voice Channel Update message - indicates calls in-progress on another channel - ignored
                 break;
             case MOTOROLA_GROUP_SERVICES_HEADER:
+            case MOTOROLA_GROUP_TEXT_DATA_BLOCK:
             case MOTOROLA_TALKER_ALIAS_DATA_BLOCK:
                 //Ignore - we'll pickup the talker alias from the assembler in the MessageProcessor.
                 break;

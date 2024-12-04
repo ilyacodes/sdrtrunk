@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Motorola Talker Alias Header - Link Control Opcode 0x15.
+ * Motorola Group Services Header - Link Control Opcode 0x15.
  *
  * I've seen LCOpcode 0x15 and 0x17 twice and in both cases it was sent in a TDULC at the end of a call for the same
  * radio on the CNYICC system.
